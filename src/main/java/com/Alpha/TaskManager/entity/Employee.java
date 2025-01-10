@@ -27,7 +27,7 @@ public class Employee {
   @NonNull
   private String password;
 
-  private List<String> role;
+  private List<String> role = new ArrayList<>();
 
   @DBRef
   private List<Task> tasks = new ArrayList<>();

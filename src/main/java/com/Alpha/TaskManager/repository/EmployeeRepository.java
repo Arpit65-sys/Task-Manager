@@ -9,5 +9,7 @@ import com.Alpha.TaskManager.entity.Employee;
 
 public interface EmployeeRepository extends MongoRepository<Employee, ObjectId> {
   Employee findByEmployeeName(String employeeName);
+
+  void deleteByEmployeeName(String name);
 }
-  
+

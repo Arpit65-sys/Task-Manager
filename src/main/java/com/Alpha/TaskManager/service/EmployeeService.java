@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,14 @@ public class EmployeeService {
   @Autowired
   private EmployeeRepository employeeRepository;
 
+  private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
   public void saveEmployee(Employee employee) {
+    employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+    employeeRepository.save(employee);
+  }
+
+  public void saveNewEmployee(Employee employee) {
     employeeRepository.save(employee);
   }
 
@@ -37,6 +46,10 @@ public class EmployeeService {
 
   public void deleteEmployeebyId(ObjectId empId) {
     employeeRepository.deleteById(empId);
+  }
+
+  public void deleteEmployeebyName(String name) {
+    employeeRepository.deleteByEmployeeName(name);
   }
 
 }

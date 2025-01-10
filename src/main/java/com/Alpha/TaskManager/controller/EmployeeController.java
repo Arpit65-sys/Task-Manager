@@ -7,6 +7,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.Alpha.TaskManager.entity.Employee;
@@ -28,12 +30,6 @@ public class EmployeeController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  @PostMapping("/create-employee")
-  public ResponseEntity<?> createEmployee(@RequestBody Employee employee) {
-    employeeService.saveEmployee(employee);
-    return new ResponseEntity<>(employee, HttpStatus.CREATED);
-  }
-
   @GetMapping("/read-employee/{empId}")
   public ResponseEntity<?> getEmployeeById(@PathVariable ObjectId empId) {
     Optional<Employee> employee = employeeService.getEmployeeById(empId);
@@ -43,9 +39,14 @@ public class EmployeeController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  @PutMapping("/update-employee/{empName}")
-  public ResponseEntity<?> updateEmployee(@RequestBody Employee employee, @PathVariable String empName) {
+  @PutMapping("/update-employee")
+  public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String empName = authentication.getName();
     Employee employee1 = employeeService.getEmployeeByName(empName);
+    if(employee.getRole() == null || employee.getRole().isEmpty()) {
+      employee.setRole(List.of("Employee"));
+    }
     if (employee1 != null) {
       employee1.setEmployeeName(employee.getEmployeeName());
       employee1.setPassword(employee.getPassword());
@@ -53,13 +54,13 @@ public class EmployeeController {
       employeeService.saveEmployee(employee1);
       return new ResponseEntity<>("Updation of Employee is successfully completed", HttpStatus.OK);
     }
-
     return new ResponseEntity<>("Employee not exists", HttpStatus.NOT_FOUND);
   }
 
-  @DeleteMapping("/delete-employee/{empId}")
-  public ResponseEntity<?> deleteEmployee(@PathVariable ObjectId empId) {
-    employeeService.deleteEmployeebyId(empId);
+  @DeleteMapping("/delete-employee")
+  public ResponseEntity<?> deleteEmployee() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    employeeService.deleteEmployeebyName(authentication.getName());
     return new ResponseEntity<>("Employee is successfully removed", HttpStatus.OK);
-  } 
+  }
 }
