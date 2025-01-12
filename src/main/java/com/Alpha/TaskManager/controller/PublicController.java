@@ -32,7 +32,7 @@ public class PublicController {
     if (employee.getRole() == null || employee.getRole().isEmpty()) {
       employee.setRole(List.of("USER")); // Assign a default role
     }
-    employeeService.saveEmployee(employee);
+    employeeService.saveNewEmployee(employee);
     return new ResponseEntity<>(employee, HttpStatus.CREATED);
   }
 

@@ -51,7 +51,7 @@ public class EmployeeController {
       employee1.setEmployeeName(employee.getEmployeeName());
       employee1.setPassword(employee.getPassword());
       employee1.setRole(employee.getRole());
-      employeeService.saveEmployee(employee1);
+      employeeService.saveNewEmployee(employee1);
       return new ResponseEntity<>("Updation of Employee is successfully completed", HttpStatus.OK);
     }
     return new ResponseEntity<>("Employee not exists", HttpStatus.NOT_FOUND);

@@ -33,7 +33,7 @@ public class TaskService {
       employee.getTasks().add(savedTask);
       employeeService.saveEmployee(employee);
     } catch (Exception e) {
-      System.out.println(e);  
+      System.out.println(e);
       throw new RuntimeException("Error while saving task", e);
     }
   }
@@ -46,15 +46,21 @@ public class TaskService {
     return taskRepository.findById(taskId);
   }
 
+  @Transactional
   public Boolean deleteTask(String employeeName, ObjectId taskId) {
-    Employee employee = employeeService.getEmployeeByName(employeeName);
-    employee.getTasks().removeIf(task -> task.getTaskId().equals(taskId));
-    employeeService.saveEmployee(employee);
-    if (taskRepository.existsById(taskId)) {
-      taskRepository.deleteById(taskId);
-      return true;
+    try {
+      Employee employee = employeeService.getEmployeeByName(employeeName);
+      boolean removed = employee.getTasks().removeIf(task -> task.getTaskId().equals(taskId));
+      if (removed) {
+        employeeService.saveEmployee(employee);
+        taskRepository.deleteById(taskId);
+        return true;
+      }
+      return false;
+    } catch (Exception e) {
+      System.out.println(e);
+      throw new RuntimeException("Error while deleting task", e);
     }
-    return false;
   }
 
   public boolean updateTask(ObjectId taskId, Task newTask, String employeeName) {
@@ -98,4 +104,3 @@ public class TaskService {
   }
 
 }
-

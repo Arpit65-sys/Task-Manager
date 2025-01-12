@@ -23,12 +23,12 @@ public class EmployeeService {
 
   private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-  public void saveEmployee(Employee employee) {
+  public void saveNewEmployee(Employee employee) {
     employee.setPassword(passwordEncoder.encode(employee.getPassword()));
     employeeRepository.save(employee);
   }
 
-  public void saveNewEmployee(Employee employee) {
+  public void saveEmployee(Employee employee) {
     employeeRepository.save(employee);
   }
 
