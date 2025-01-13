@@ -21,14 +21,14 @@ public class EmployeeController {
   @Autowired
   private EmployeeService employeeService;
 
-  @GetMapping("/all-employees")
-  public ResponseEntity<?> getAllEmployees() {
-    List<Employee> employees = employeeService.getAllEmployees();
-    if (employees != null && !employees.isEmpty()) {
-      return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
-    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-  }
+  // @GetMapping("/all-employees")
+  // public ResponseEntity<?> getAllEmployees() {
+  //   List<Employee> employees = employeeService.getAllEmployees();
+  //   if (employees != null && !employees.isEmpty()) {
+  //     return new ResponseEntity<>(employees, HttpStatus.OK);
+  //   }
+  //   return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  // }
 
   @GetMapping("/read-employee/{empId}")
   public ResponseEntity<?> getEmployeeById(@PathVariable ObjectId empId) {
