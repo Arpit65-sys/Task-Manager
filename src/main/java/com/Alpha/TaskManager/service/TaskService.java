@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +14,6 @@ import com.Alpha.TaskManager.repository.TaskRepository;
 import java.time.LocalDateTime;
 
 @Service
-@Component
 public class TaskService {
 
   @Autowired
