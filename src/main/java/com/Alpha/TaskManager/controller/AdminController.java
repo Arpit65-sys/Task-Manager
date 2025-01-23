@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.Alpha.TaskManager.entity.Employee;
 import com.Alpha.TaskManager.service.EmployeeService;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -41,5 +41,14 @@ public class AdminController {
     } catch (Exception e) {
       return new ResponseEntity<>("Employee not created", HttpStatus.BAD_REQUEST);
     }
+  }
+  
+  @PostMapping("/signup")
+  public ResponseEntity<?> signUpEmployee(@RequestBody Employee employee) {
+    if (employee.getRole() == null || employee.getRole().isEmpty()) {
+      employee.setRole(List.of("USER")); // Assign a default role
+    }
+    employeeService.saveNewEmployee(employee);
+    return new ResponseEntity<>(employee, HttpStatus.CREATED);
   }
 }
