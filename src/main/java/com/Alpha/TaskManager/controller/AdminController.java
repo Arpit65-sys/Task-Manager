@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.Alpha.TaskManager.service.EmployeeService;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // Updated CORS settings
 public class AdminController {
 
   @Autowired
@@ -39,7 +41,7 @@ public class AdminController {
       employeeService.saveNewEmployee(employee);
       return new ResponseEntity<>(employee, HttpStatus.CREATED);
     } catch (Exception e) {
-      return new ResponseEntity<>("Employee not created", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>("Something went wrong try again with another username !!!", HttpStatus.BAD_REQUEST);
     }
   }
   

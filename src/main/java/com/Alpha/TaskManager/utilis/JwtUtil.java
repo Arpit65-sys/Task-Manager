@@ -51,13 +51,18 @@ public class JwtUtil {
                 .header().empty().add("typ","JWT")
                 .and()
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 5)) // 5 minutes expiration time
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 5 )) // 5 minutes expiration time
                 .signWith(getSigningKey())
                 .compact();
     }
 
     public Boolean validateToken(String token) {
-        return !isTokenExpired(token);
+        try {
+            return token != null && !isTokenExpired(token);  // Ensure token is not null and not expired
+        } catch (Exception e) {
+            return false;  // If parsing fails, return false
+        }
     }
+    
     
 }
