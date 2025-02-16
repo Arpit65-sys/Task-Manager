@@ -1,0 +1,20 @@
+.navbar {
+  top: 0;
+  width: 100%;
+  position: fixed !important;
+  margin-bottom: 20px;
+  z-index: 9999;
+}
+
+.login-setup{
+  margin-left: 3rem;
+}
+
+@media (max-width: 768px) {
+  .divider hr{
+    color: white;
+  }
+  .login-setup{
+    margin-left: 0rem;
+  }
+}

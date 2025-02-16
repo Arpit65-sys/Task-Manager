@@ -1,0 +1,118 @@
+/* General styles */
+.home-container {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Banner Section */
+.home-banner {
+  height: 25rem;
+  background: rgb(23, 24, 45); /* Replace with actual banner image */
+  color: white;
+  padding: 60px 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.home-banner h1 {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.home-banner p {
+  font-size: 1.4rem;
+  max-width: 800px;
+}
+
+/* API & Quotes Section */
+.api-quotes {
+  background-color: #f8f9fa;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.api-status {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.quote {
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+/* Projects Section */
+.projects {
+  padding: 50px 20px;
+}
+
+.projects h2 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+}
+
+.project-cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.project-card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  width: 270px;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card h3 {
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+}
+
+.project-card p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* About Us Section */
+.about-us {
+  background-color: #e3f2fd;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-us h2 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+}
+
+.about-us p {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 850px;
+  margin: 0 auto;
+}
