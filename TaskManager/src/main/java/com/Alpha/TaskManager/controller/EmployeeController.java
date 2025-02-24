@@ -56,6 +56,9 @@ public class EmployeeController {
     if (employee1 != null) {
       employee1.setEmployeeName(employee.getEmployeeName());
       employee1.setPassword(employee.getPassword());
+      employee1.setMailId(employee.getMailId());
+      employee1.setPhoneNumber(employee.getPhoneNumber());
+      employee1.setGender(employee.getGender());
       employee1.setRole(employee.getRole());
       employeeService.saveNewEmployee(employee1);
       return new ResponseEntity<>("Updation has successfully completed...Login Again !!!", HttpStatus.OK);

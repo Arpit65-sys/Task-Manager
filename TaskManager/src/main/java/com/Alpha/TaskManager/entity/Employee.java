@@ -23,9 +23,15 @@ public class Employee {
   @Indexed(unique = true)
   @NonNull
   private String employeeName;
-
+  
   @NonNull
   private String password;
+
+  private String mailId;
+
+  private String phoneNumber;
+  
+  private String gender;
 
   private List<String> role = new ArrayList<>();
 

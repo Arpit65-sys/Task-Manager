@@ -136,7 +136,6 @@ const EmployeeDashboard = () => {
     <div className="container">
       <div className="card details-panel shadow-lg p-4 bg-light">
         <h2 className="text-center text-primary">Welcome, {employee}</h2>
-        <p className="text-center text-secondary">Role: {userRole}</p>
 
         {/* Fetch Employee Details */}
         <form onSubmit={handleSubmit} className="">
@@ -207,43 +206,109 @@ const EmployeeDashboard = () => {
 
         {/* Update Employee Details */}
         <form onSubmit={handleUpdate} className="mt-4">
-          <div className="mb-3">
+          <div>
             <label className="form-label fw-bold">
               3. Update Employee Information
             </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Employee Name"
-              value={updateData.employeeName}
-              onChange={(e) =>
-                setUpdateData({ ...updateData, employeeName: e.target.value })
-              }
-              required
-            />
-            <input
-              type="password"
-              className="form-control mt-2"
-              placeholder="Password"
-              value={updateData.password}
-              onChange={(e) =>
-                setUpdateData({ ...updateData, password: e.target.value })
-              }
-              required
-            />
-            <input
-              type="text"
-              className="form-control mt-2"
-              placeholder="Roles (comma-separated)"
-              value={updateData.role.join(", ")}
-              onChange={(e) =>
-                setUpdateData({
-                  ...updateData,
-                  role: e.target.value.split(","),
-                })
-              }
-              required
-            />
+            <div className="row">
+              <div className="col-6">
+                <input
+                  type="text"
+                  className="form-control mt-2"
+                  placeholder="Employee Name"
+                  value={updateData.employeeName}
+                  onChange={(e) =>
+                    setUpdateData({
+                      ...updateData,
+                      employeeName: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+              <div className="col-6">
+                <input
+                  type="password"
+                  className="form-control mt-2"
+                  placeholder="Password"
+                  value={updateData.password}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, password: e.target.value })
+                  }
+                  required
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                <input
+                  type="text"
+                  className="form-control mt-2"
+                  placeholder="Enter mail Id"
+                  value={updateData.mailId}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, mailId: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="col-6">
+                <input
+                  type="text"
+                  className="form-control mt-2"
+                  placeholder="Enter Contact Number"
+                  value={updateData.phoneNumber}
+                  onChange={(e) =>
+                    setUpdateData({
+                      ...updateData,
+                      phoneNumber: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                <input
+                  type="text"
+                  className="form-control mt-2"
+                  placeholder="Roles (comma-separated)"
+                  value={updateData.role.join(", ")}
+                  onChange={(e) =>
+                    setUpdateData({
+                      ...updateData,
+                      role: e.target.value.split(","),
+                    })
+                  }
+                  required
+                />
+              </div>
+              <div className="col-6 position-relative">
+                <select
+                  className="form-select mt-2"
+                  value={updateData.gender}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, gender: e.target.value })
+                  }
+                  required
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <i
+                  className="bi bi-caret-down-fill position-absolute"
+                  style={{
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                  }}
+                ></i>
+              </div>
+            </div>
+
             <button type="submit" className="btn btn-success mt-2">
               Update
             </button>
@@ -270,7 +335,16 @@ const EmployeeDashboard = () => {
                     <strong>Name:</strong> {employeeDetails.employeeName}
                   </p>
                   <p>
+                    <strong>Email-Id:</strong> {employeeDetails.mailId}
+                  </p>
+                  <p>
+                    <strong>Contact No:</strong> {employeeDetails.phoneNumber}
+                  </p>
+                  <p>
                     <strong>Role:</strong> {employeeDetails.role?.join(", ")}
+                  </p>
+                  <p>
+                    <strong>Gender:</strong> {employeeDetails.gender}
                   </p>
                 </>
               ) : (
